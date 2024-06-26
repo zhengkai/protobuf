@@ -1,0 +1,31 @@
+syntax = "proto3";
+option go_package = "/pb";
+package pb;
+
+// 全局冲突
+
+enum DemoType {
+	TYPE1 = 0;
+	TYPE2 = 1;
+}
+
+enum DemoTypeX {
+	TYPE1 = 0;
+	TYPE2 = 1;
+}
+
+// 没有全局冲突
+
+message Demo {
+	enum Type {
+		TYPE1 = 0;
+		TYPE2 = 1;
+	}
+}
+
+message DemoX {
+	enum Type {
+		TYPE1 = 0;
+		TYPE2 = 1;
+	}
+}
