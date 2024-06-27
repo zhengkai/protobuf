@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<title>HEX</title>
+<style>
+html, body {
+	margin: 0;
+	background-color: #000;
+}
+
+pre {
+	font-size: 24px;
+	margin: 64px auto;
+	width: 1024px;
+}
+
+code {
+	font-family: JetBrains Mono NL, FZHei-B01, Microsoft Yahei, monospace;
+	color: #999;
+}
+
+span {
+	&.type {
+		color: #ffaf00;
+	}
+	&.len {
+		color: #afff00;
+	}
+	&.content {
+		color: #00afff;
+	}
+}
+</style>
+</head>
+<body>
+
+<pre><code>  0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5  6
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+ <span class="type">00</span> <span class="content">00 00 00 01</span>                           // 数字 1（使用 big-endian）
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+ <span class="type">00</span> <span class="content">00 00 01 01</span>                         // 数字 257
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+ <span class="type">01</span> <span class="len">05</span> <span class="content">41 42 43 44 45</span>             // 字符串 "ABCDE"
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+ <span class="type">02</span> <span class="len">01</span> <span class="type">01</span> <span class="len">03</span> <span class="content">66 6f 6f</span> <span class="type">00</span> <span class="content">00 00 00 01</span>
+                               // object {"foo": 1}
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+ <span class="type">03</span> <span class="len">03</span> <span class="type">01</span> <span class="len">01</span> <span class="content">41</span> <span class="type">00</span> <span class="content">00 00 00 01</span> <span class="type">03</span> <span class="len">01</span> <span class="type">01</span> <span class="len">02</span> <span class="content">6b 6b</span>
+                          // array ["A", 1, ["bb"]]
+</code></pre>
+
+</body>
+</html>
